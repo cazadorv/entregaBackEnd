@@ -21,9 +21,9 @@ namespace practica_Back_end
         {
             public Module()
             {
-               Get("/", x => 
+               Get("/",  _=> 
                {
-                   return string.Concat("Hello ", x);
+                   return string.Concat("Hola Christian ");
                 }
             );
             }
