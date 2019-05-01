@@ -10,12 +10,25 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Nancy;
+using Nancy.Owin;
 
 namespace practica_Back_end
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public class Module : NancyModule
+        {
+            public Module()
+            {
+               Get("/", x => 
+               {
+                   return string.Concat("Hello ", x);
+                }
+            );
+            }
+        }
+       public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -25,7 +38,7 @@ namespace practica_Back_end
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,7 +57,6 @@ namespace practica_Back_end
             //app.UseHttpsRedirection();
             //app.UseMvc();
             app.UseOwin(b => b.UseNancy());
-
         }
     }
 }

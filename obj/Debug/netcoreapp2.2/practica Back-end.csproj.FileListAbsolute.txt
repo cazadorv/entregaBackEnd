@@ -1,0 +1,14 @@
+c:\Cursos\practica Back-end\obj\Debug\netcoreapp2.2\practica Back-end.csprojAssemblyReference.cache
+c:\Cursos\practica Back-end\obj\Debug\netcoreapp2.2\practica Back-end.csproj.CoreCompileInputs.cache
+c:\Cursos\practica Back-end\obj\Debug\netcoreapp2.2\practica Back-end.RazorAssemblyInfo.cache
+c:\Cursos\practica Back-end\obj\Debug\netcoreapp2.2\practica Back-end.RazorAssemblyInfo.cs
+c:\Cursos\practica Back-end\obj\Debug\netcoreapp2.2\practica Back-end.AssemblyInfoInputs.cache
+c:\Cursos\practica Back-end\obj\Debug\netcoreapp2.2\practica Back-end.AssemblyInfo.cs
+C:\Cursos\practica Back-end\bin\Debug\netcoreapp2.2\practica Back-end.deps.json
+C:\Cursos\practica Back-end\bin\Debug\netcoreapp2.2\practica Back-end.runtimeconfig.json
+C:\Cursos\practica Back-end\bin\Debug\netcoreapp2.2\practica Back-end.runtimeconfig.dev.json
+c:\Cursos\practica Back-end\bin\Debug\netcoreapp2.2\practica Back-end.dll
+c:\Cursos\practica Back-end\bin\Debug\netcoreapp2.2\practica Back-end.pdb
+c:\Cursos\practica Back-end\obj\Debug\netcoreapp2.2\practica Back-end.RazorTargetAssemblyInfo.cache
+c:\Cursos\practica Back-end\obj\Debug\netcoreapp2.2\practica Back-end.dll
+c:\Cursos\practica Back-end\obj\Debug\netcoreapp2.2\practica Back-end.pdb
