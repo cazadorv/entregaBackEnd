@@ -23,7 +23,7 @@ namespace practica_Back_end
             {
                 Get("/cliente", _=> 
                 {
-                   return Response.AsJson(new Cliente(1,"Carlos","Garcia","La Pinta 10"));
+                   return Response.AsJson(new Cliente(1,"Carlos","Garcia","La Pinta 11"));
                 });
             }
 
