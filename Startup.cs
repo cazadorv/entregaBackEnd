@@ -17,13 +17,17 @@ namespace practica_Back_end
 {
     public class Startup
     {
-        public class Module : NancyModule
+        public class HolaModule : NancyModule
         {
-            public Module()
+            public HolaModule()
             {
-               Get("/",  _=> 
-               {
+                Get("/",  _=> 
+                {
                    return string.Concat("Hola Christian ");
+                });
+                Get("/cliente", _=> 
+                {
+                   return Response.AsJson(new Cliente(1,"Carlos","Garcia","La Pinta 10"));
                 });
             }
 
