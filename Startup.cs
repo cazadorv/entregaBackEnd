@@ -25,6 +25,9 @@ namespace practica_Back_end
                 {
                    return Response.AsJson(new Cliente(1,"Carlos","Garcia","La Pinta 11"));
                 });
+                //Put("");
+                //Post();
+                //Delete();
             }
 
         }
