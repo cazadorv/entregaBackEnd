@@ -6,6 +6,7 @@ namespace practica_Back_end
            public string Nombre { get; set;}
            public string Apellido { get; set;}
            public string Direccion { get; set;}
+
            public Cliente(long id, string nombre, string apellido, string direccion)
            {
                    this.Id = id;
@@ -13,5 +14,7 @@ namespace practica_Back_end
                    this.Apellido = apellido;
                    this.Direccion = direccion;
            }
+           
+
         }
 }

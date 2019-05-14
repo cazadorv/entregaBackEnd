@@ -17,20 +17,7 @@ namespace practica_Back_end
 {
     public class Startup
     {
-        public class ClienteModule : NancyModule
-        {
-            public ClienteModule()
-            {
-                Get("/cliente", _=> 
-                {
-                   return Response.AsJson(new Cliente(1,"Carlos","Garcia","La Pinta 11"));
-                });
-                //Put("");
-                //Post();
-                //Delete();
-            }
-
-        }
+        
        public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
