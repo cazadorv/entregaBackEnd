@@ -1,4 +1,4 @@
-namespace practica_Back_end
+namespace Clases
 {
        public class Cliente
         {
