@@ -20,19 +20,5 @@ namespace Clases
                    this.Direccion = direccion;
            }
         //metodos set
-        public void setId(long id){
-                this.Id=id;
-        }
-        public void setNombre(string nombre){
-                this.Nombre =nombre;
-        }
-
-        public void setApellido(string apellido){
-                this.Apellido = apellido;
-        }
-        public void setDireccion(string direccion){
-                this.Direccion = direccion;
-        }
-
         }
 }

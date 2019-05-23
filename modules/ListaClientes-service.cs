@@ -14,8 +14,7 @@ namespace ListadoDeClientes
             this.listaCliente = new List<Cliente>();
         }
         public void addCliente(Cliente newClient){
-            this.listaCliente.Add(newClient);
-            
+            this.listaCliente.Add(newClient);            
         }
         
         public void getCliente(int id){
