@@ -12,16 +12,19 @@ namespace ClienteModule
 {
     public class ClienteModule : NancyModule
         {
-            public void enableCORS(NancyModule module){
+            public void enableCORS(){
+                // Enable cors
+            After.AddItemToEndOfPipeline((ctx) =>
+            {
+                ctx.Response.WithHeader("Access-Control-Allow-Origin", "*")
+                    .WithHeader("Access-Control-Allow-Methods", "POST,GET")
+                    .WithHeader("Access-Control-Allow-Headers", "Accept, Origin, Content-type");
+            });
                 
-                After.AddItemToEndOfPipeline(x =>{
-                    x.Response.WithHeaders("Access-Control-Allow-Origin","*")
-                        .WithHeader("Access-Control-Allow-Methods","POST,GET")
-                        .WithHeader("Access-Control-Allow-Headers","Accept,Origin,Content-type");
-                });
             }
             public ClienteModule()
-            {
+            {                
+                enableCORS();
                 Get("/prueba",_=>
                 {
                     var clt = new Cliente(1,"Fede","Giant","moreno 951");                    
@@ -39,6 +42,7 @@ namespace ClienteModule
                     //mapeo el modelo de mi direccion
                     Cliente clt = this.Bind<Cliente>(datosFront);
                     //System.Console.WriteLine(clt);
+
                     return Response.AsJson(datosFront,Nancy.HttpStatusCode.Created);
                      
                 });
