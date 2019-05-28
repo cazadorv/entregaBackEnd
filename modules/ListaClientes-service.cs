@@ -1,24 +1,46 @@
+using System.Net.Security;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Collections.Generic;
 using Nancy;
 using Nancy.Owin;
-using practica_Back_end;
 using Clases;
 
-namespace ListadoDeClientes
+//aqui voy a declarar mis funciones o procedimientos que utilizare desde el modulo
+namespace practica_Back_end
 {
-    public class ListaCLientesModule:NancyModule
+    public class ListaClientesService
     {
-        List<Cliente> listaCliente;
-        public void InicializarLista(){
-            this.listaCliente = new List<Cliente>();
+        private List<Cliente> listaCliente;
+        public ListaClientesService(){
+            //inicializo mi lista con 
+            this.listaCliente = new List<Cliente>
+            {
+                new Cliente(0,"Carlos","Frazua","Dorbenite 2568"),
+                new Cliente(1,"Ezequiel","Miravales","Claromeco 56"),
+                new Cliente(2,"Richard","Christoff","Misticofer 89"),
+                new Cliente(3,"Raul","Kelving","Puerto alto 53"),
+                new Cliente(4,"Alejandro","Raule","Francia 105"),
+            };
         }
-        public void addCliente(Cliente newClient){
-            this.listaCliente.Add(newClient);            
+        //retorna la lista de clientes    
+        public List<Cliente> getClientes(){
+        return this.listaCliente;
+    }
+        // genera una id nueva para un nuevo cliente
+        public int generateId(){
+            int ultimo = this.listaCliente.Count-1;
+            ultimo -= 1;
+            return ultimo;
+        }
+        public void addCliente(Cliente newCliente){
+            
+            this.listaCliente.Add(newCliente);            
         }
         
-        public void getCliente(int id){
-            System.Console.WriteLine("dentro de get cliente");
+        public Cliente getCliente(int pos){
+            
+            return this.listaCliente[pos];
         }
     }
 }

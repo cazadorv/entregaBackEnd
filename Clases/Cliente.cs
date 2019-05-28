@@ -4,7 +4,7 @@ namespace Clases
         //clase cliente 
        public class Cliente
         {
-           public long Id {get; set;}
+           public int Id {get; set;}
            public string Nombre { get; set;}
            public string Apellido { get; set;}
            public string Direccion { get; set;}
@@ -12,7 +12,7 @@ namespace Clases
         //constructor para inicializar sin atributos
            public Cliente(){}
         //constructor para inicializar con atributos
-           public Cliente(long id, string nombre, string apellido, string direccion)
+           public Cliente(int id, string nombre, string apellido, string direccion)
            {
                    this.Id = id;
                    this.Nombre = nombre;
