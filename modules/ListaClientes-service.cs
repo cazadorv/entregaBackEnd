@@ -38,8 +38,7 @@ namespace practica_Back_end
             this.listaCliente.Add(newCliente);            
         }
         
-        public Cliente getCliente(int pos){
-            
+        public Cliente getCliente(int pos){            
             return this.listaCliente[pos];
         }
     }

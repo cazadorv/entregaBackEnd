@@ -27,10 +27,11 @@ namespace practica_Back_end
         public ClienteModule(ListaClientesService servicioLC)
             {    
                 //activo el CORS
-                After += ctx => ctx.Response.WithHeaders(CorsHeaders);
                 //se crea una variable del servicio
-                this._servicioListaCliente = servicioLC;    
                 //se crea la variable listado
+                
+                After += ctx => ctx.Response.WithHeaders(CorsHeaders);
+                this._servicioListaCliente = servicioLC;    
                 List<Cliente> listado = servicioLC.getClientes();  
                 
                 //se muestran todos los clientes del listado
@@ -38,19 +39,21 @@ namespace practica_Back_end
                 {
                     return Response.AsJson(listado);
                 });
+
                 //se muestra un cliente del listado, pasando su posicion
                 //Get("/cliente/{id}", id =>
                 //{
                 //    Cliente mostrar= servicioLC.getCliente(id);
                 //    return Response.AsJson(mostrar);
                 //});
+                
                 Post("/clientes/posteo", _ =>
                 {
-                    var lista = this.Bind<Cliente>();
-                    _servicioListaCliente.addCliente(lista);
-                    return Response.AsJson(lista);
+                    Cliente nuevo = this.Bind<Cliente>();
+                    _servicioListaCliente.addCliente(nuevo);
+                    return Response.AsJson(nuevo);
                 });
-                
+
                 Post("/clientes/posteo1",_ =>               
                 {   
                     var urlFront = "https://reqres.in/api/users";
