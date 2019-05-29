@@ -27,45 +27,40 @@ namespace practica_Back_end
         public ClienteModule(ListaClientesService servicioLC)
             {    
                 //activo el CORS
-                //se crea una variable del servicio
-                //se crea la variable listado
-                
                 After += ctx => ctx.Response.WithHeaders(CorsHeaders);
-                this._servicioListaCliente = servicioLC;    
-                List<Cliente> listado = servicioLC.getClientes();  
                 
+                //se crea una variable del servicio
+                this._servicioListaCliente = servicioLC;    
+                
+                //se crea la variable listado
+                List<Cliente> listado = servicioLC.getClientes();  
+                                
                 //se muestran todos los clientes del listado
                 Get("/cliente",_=>
                 {
                     return Response.AsJson(listado);
                 });
-
-                //se muestra un cliente del listado, pasando su posicion
-                //Get("/cliente/{id}", id =>
-                //{
-                //    Cliente mostrar= servicioLC.getCliente(id);
-                //    return Response.AsJson(mostrar);
-                //});
                 
-                Post("/clientes/posteo", _ =>
+                Post("/clientes/crear", _ =>
                 {
-                    Cliente nuevo = this.Bind<Cliente>();
-                    _servicioListaCliente.addCliente(nuevo);
-                    return Response.AsJson(nuevo);
+                    var nuevoClt = this.Bind<Cliente>();
+                    _servicioListaCliente.addCliente(nuevoClt);
+                    return Response.AsJson(nuevoClt);
                 });
 
-                Post("/clientes/posteo1",_ =>               
+                Post("/clientes/crearNvo",_ =>               
                 {   
-                    var urlFront = "https://reqres.in/api/users";
+                    var urlFront = "http://localhost:4200";
+
                     //creo mi variable para manejar mi url
                     WebClient wc = new WebClient();
                     //almaceno los datos de esa direccion
                     var datosFront = wc.DownloadString(urlFront);
 
                     //mapeo el modelo de mi direccion
-                    Cliente clt = this.Bind<Cliente>(datosFront);
+                    var clt = this.Bind<Cliente>(datosFront);
                     //System.Console.WriteLine(clt);
-
+                    _servicioListaCliente.addCliente(clt);
                     return Response.AsJson(datosFront,Nancy.HttpStatusCode.Created);
                      
                 });
