@@ -1,13 +1,6 @@
 using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Linq.Expressions;
-using System.Net.Http.Headers;
 using System;
-using System.IO;
-using System.Net.Http;
-using System.Net.WebSockets;
 using System.Net;
-using System.Runtime.CompilerServices;
 using Nancy.ModelBinding;
 using Nancy;
 using Clases;
@@ -37,7 +30,7 @@ namespace practica_Back_end
                                 
                 //se muestran todos los clientes del listado
                 Get("/cliente",_=>
-                {
+                {   
                     return Response.AsJson(listado);
                 });
                 
