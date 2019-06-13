@@ -45,7 +45,7 @@ namespace practica_Back_end
                 {
                     var nuevoClt = this.Bind<Cliente>();
                     _servicioListaCliente.addCliente(nuevoClt);
-                    return Response.AsJson(nuevoClt);
+                    return Response.AsJson(listado);
                 });
 
                 Post("/clientes/crearNvo",_ =>               

@@ -30,11 +30,11 @@ namespace practica_Back_end
         // genera una id nueva para un nuevo cliente
         public int generateId(){
             int ultimo = this.listaCliente.Count-1;
-            ultimo -= 1;
+            ultimo += 1;
             return ultimo;
         }
         public void addCliente(Cliente newCliente){
-            
+            newCliente.Id = generateId();          
             this.listaCliente.Add(newCliente);            
         }
         

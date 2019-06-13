@@ -1,0 +1,3 @@
+server
+
+mongodb+srv://prueba:<password>@clienteprueba-pfqnp.azure.mongodb.net/test?retryWrites=true&w=majority
