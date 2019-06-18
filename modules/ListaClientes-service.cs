@@ -15,7 +15,7 @@ namespace practica_Back_end
             {
                 new Cliente(0,"Carlos","Frazua","Dorbenite 2568"),
                 new Cliente(1,"Ezequiel","Miravales","Claromeco 56"),
-                new Cliente(1,"Francesco","Elvar","Gamorra 2")
+                new Cliente(2,"Francesco","Elvar","Gamorra 2")
             };
         }
         //retorna la lista de clientes    
@@ -26,9 +26,7 @@ namespace practica_Back_end
         // genera una id nueva para un nuevo cliente
         public int generateId()
         {
-            int ultimo = this.listaCliente.Count-1;
-            ultimo += 1;
-            return ultimo;
+            return this.listaCliente.Last().getId()+1;
         }
         public void addCliente(Cliente newCliente)
         {

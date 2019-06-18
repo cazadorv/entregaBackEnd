@@ -17,31 +17,29 @@ namespace practica_Back_end
                                         Tuple.Create("Access-Control-Allow-Headers", "Accept, Origin, Content-type"),
                                         Tuple.Create("Access-Control-Allow-Methods", "GET,HEAD,POST,DELETE,OPTIONS,PUT,PATCH")
             };
-        public ClienteModule(ListaClientesService servicioLC)
+        public ClienteModule(ListaClientesService servicioLC):base("/cliente")
             {    
                 //activo el CORS
                 After += ctx => ctx.Response.WithHeaders(CorsHeaders);
                 
                 //se crea una variable del servicio
-                this._servicioListaCliente = servicioLC;    
-                
-                //se crea la variable listado
-                List<Cliente> listado = servicioLC.getClientes();  
+                this._servicioListaCliente = servicioLC;      
                                 
                 //se muestran todos los clientes del listado
-                Get("/cliente",_=>
+                Get("/",_=>
                 {   
-                    return Response.AsJson(listado);
+                    return Response.AsJson(servicioLC.getClientes());
                 });
                 
-                Post("/clientes/crear", _ =>
+                //obtengo los datos desde la URL
+                Post("/nuevo", _ =>
                 {
                     var nuevoClt = this.Bind<Cliente>();
                     _servicioListaCliente.addCliente(nuevoClt);
-                    return Response.AsJson(listado);
+                    return Response.AsJson(servicioLC.getClientes());
                 });
 
-                Post("/clientes/crearNvo",_ =>               
+                /*Post("/crearNvo",_ =>               
                 {   
                     var urlFront = "http://localhost:4200";
 
@@ -57,7 +55,7 @@ namespace practica_Back_end
                     return Response.AsJson(datosFront,Nancy.HttpStatusCode.Created);
                      
                 });
-                
+                */
                 //Delete();
             }
                 

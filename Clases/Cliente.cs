@@ -22,7 +22,6 @@ namespace Clases
                    this.Apellido = apellido;
                    this.Direccion = direccion;
            }
-
             /*Metodos get de los atributos*/
             public int getId() { return Id; }
             public String getNombre() { return Nombre; }
