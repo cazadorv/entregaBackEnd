@@ -40,17 +40,6 @@ namespace practica_Back_end
             return listaCliente.FirstOrDefault( x => x.Id == id );
         }
 
-        /* Devuelve un cliente de una determinada posicion, sino existe de vuelve null */
-        public Cliente getClienteById(int id)
-        {
-            return findCliente(id);            
-        }
-
-        /* elimina la lista de clientes */
-        public void delClientes(){
-            listaCliente.Clear();
-        }
-
         /* Si existe, elimina el cliente con ese id */
         public bool delClienteById(int id)
         {
