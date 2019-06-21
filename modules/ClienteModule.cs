@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using System;
-using System.Net;
 using Nancy.ModelBinding;
 using Nancy;
 using Clases;
@@ -9,9 +7,9 @@ namespace practica_Back_end
 {
     public class ClienteModule : NancyModule
         {
-            //creo una variable para poder usar mis servicio
+            /*creo una variable para poder usar mis servicio */
             private ListaClientesService _servicioListaCliente;
-            //creo una tupla para poder activar el control de acceso CORS
+            /*creo una tupla para poder activar el control de acceso CORS */
             private Tuple<string, string>[] CorsHeaders = { 
                                         Tuple.Create("Access-Control-Allow-Origin", "*"), 
                                         Tuple.Create("Access-Control-Allow-Headers", "Accept, Origin, Content-type"),
@@ -19,53 +17,61 @@ namespace practica_Back_end
             };
         public ClienteModule(ListaClientesService servicioLC):base("/cliente")
             {    
-                //activo el CORS
+                /*activo el CORS */
                 After += ctx => ctx.Response.WithHeaders(CorsHeaders);
                 
-                //se crea una variable del servicio
+                /*se crea una variable del servicio */
                 this._servicioListaCliente = servicioLC;      
                                 
-                //se muestran todos los clientes del listado
+                /*se muestran todos los clientes del listado */
                 Get("/",_=>
                 {   
-                    return Response.AsJson(servicioLC.getClientes());
+                    return Response.AsJson(servicioLC.getClientes(),HttpStatusCode.OK);
+                });
+
+                /*se muestra un cliente obtenido por su ID */
+                Get("/buscar/{id}", variables =>
+                {                       
+                    Cliente cliente = servicioLC.findCliente(variables.id);
+                    if (cliente == null )
+                    {   
+                        /*sino encuentro el cliente seteo el status en 404 */
+                        return new Response{ StatusCode = HttpStatusCode.NotFound};
+                    }
+                    return Response.AsJson(cliente,HttpStatusCode.Created);
                 });
                 
-                //obtengo los datos desde la URL
+                /*mapeo los datos enviados y creo un nuevo cliente */
                 Post("/nuevo", _ =>
                 {
                     var nuevoClt = this.Bind<Cliente>();
-                    _servicioListaCliente.addCliente(nuevoClt);
-                    return Response.AsJson(servicioLC.getClientes());
+                    servicioLC.addCliente(nuevoClt);
+                    return Response.AsJson(servicioLC.getClientes(),HttpStatusCode.Created);
                 });
 
-                /*Post("/crearNvo",_ =>               
+                /* Actualizo un cliente existente */
+                Put("/actualizar/{id}", variables =>
+                {
+                    var nuevoClt = this.Bind<Cliente>();
+                    if (servicioLC.findCliente(variables.id) != null)
+                    {
+                        servicioLC.updateCliente(variables.id,nuevoClt);
+                        return Response.AsJson(servicioLC.getClientes(),HttpStatusCode.OK);
+                    }
+                    return HttpStatusCode.NoContent;
+                });
+
+                /* Elimino un cliente de la lista */
+                Delete("/eliminar/{id}", variables =>
                 {   
-                    var urlFront = "http://localhost:4200";
-
-                    //creo mi variable para manejar mi url
-                    WebClient wc = new WebClient();
-                    //almaceno los datos de esa direccion
-                    var datosFront = wc.DownloadString(urlFront);
-
-                    //mapeo el modelo de mi direccion
-                    var clt = this.Bind<Cliente>(datosFront);
-                    //System.Console.WriteLine(clt);
-                    _servicioListaCliente.addCliente(clt);
-                    return Response.AsJson(datosFront,Nancy.HttpStatusCode.Created);
-                     
+                    if (servicioLC.delClienteById(variables.id))
+                    {
+                        return Response.AsJson(servicioLC.getClientes(),HttpStatusCode.OK);
+                    }
+                        /* SI el cliente no existe, se devuelve un 404 */
+                        return HttpStatusCode.NotFound;
                 });
-                */
-                //Delete();
             }
                 
         }
 }
-            //public void enableCORS(){            
-            // Enable cors
-            //After.AddItemToEndOfPipeline((ctx) =>
-            //{
-            //    ctx.Response.WithHeader("Access-Control-Allow-Origin", "*")
-            //        .WithHeader("Access-Control-Allow-Methods", "POST,GET")
-            //        .WithHeader("Access-Control-Allow-Headers", "Accept, Origin, Content-type");
-            //});

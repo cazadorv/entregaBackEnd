@@ -37,21 +37,9 @@ namespace practica_Back_end
         /* retorna un cliente si existe en el listado */
         public Cliente findCliente(int id)
         {
-            int posAct =0;
-            bool existe = false;
-            Cliente clienteAct = null;
-
-            while (posAct < listaCliente.Count && !existe)
-            {
-                if (listaCliente.ElementAt(posAct).Id.Equals(id))
-                {
-                    clienteAct = listaCliente.ElementAt(posAct);
-                    existe = true;
-                }
-                posAct++;
-            }
-            return clienteAct;
+            return listaCliente.FirstOrDefault( x => x.Id == id );
         }
+
         /* Devuelve un cliente de una determinada posicion, sino existe de vuelve null */
         public Cliente getClienteById(int id)
         {
@@ -76,18 +64,16 @@ namespace practica_Back_end
         }
 
         /* Se actualiza un cliente si existe, sino devuelve nulo */
-        public Cliente updateCliente(int id,string nvoNom, string nvoApe, string nvoDir)
+        public void updateCliente(int id, Cliente datosNuevos)
         {
-            Cliente clt = findCliente(id);
+            Cliente clienteViejo = findCliente(id);
 
-            if (clt != null)
+            if (clienteViejo != null)
             {
-                clt.setNombre(nvoNom);
-                clt.setApellido(nvoApe);
-                clt.setDireccion(nvoDir);
+                clienteViejo.setNombre(datosNuevos.Nombre);
+                clienteViejo.setApellido(datosNuevos.Apellido);
+                clienteViejo.setDireccion(datosNuevos.Direccion);
             }
-
-            return clt;
         }
     }
 }
