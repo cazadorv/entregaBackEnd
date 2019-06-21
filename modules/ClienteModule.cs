@@ -45,7 +45,7 @@ namespace practica_Back_end
                 Post("/nuevo", _ =>
                 {
                     var nuevoClt = this.Bind<Cliente>();
-                    servicioLC.addCliente(nuevoClt);
+                    servicioLC.addCliente(nuevoClt);                    
                     return Response.AsJson(servicioLC.getClientes(),HttpStatusCode.Created);
                 });
 
