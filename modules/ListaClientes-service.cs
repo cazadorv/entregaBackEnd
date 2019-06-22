@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Collections.Generic;
 using Clases;
@@ -15,22 +16,20 @@ namespace practica_Back_end
             {
                 new Cliente(0,"Carlos","Frazua","Dorbenite 2568"),
                 new Cliente(1,"Ezequiel","Miravales","Claromeco 56"),
-                new Cliente(2,"Francesco","Elvar","Gamorra 2")
+                new Cliente(2,"Francesco","Elvar","Gamorra 2"),
+                new Cliente(3,"Alejandro","Fritz","Monte Verde 564")
             };
         }
-        //retorna la lista de clientes    
+        /* retorna la lista de clientes */
         public List<Cliente> getClientes()
         {
             return this.listaCliente;
         }
-        // genera una id nueva para un nuevo cliente
-        public int generateId()
-        {
-            return this.listaCliente.Last().getId()+1;
-        }
+        /*genera una id nueva para un nuevo cliente*/
         public void addCliente(Cliente newCliente)
         {
-            newCliente.Id = generateId();          
+            var id = this.listaCliente.Last().getId()+1;
+            newCliente.setId(id);
             this.listaCliente.Add(newCliente);            
         }
 
@@ -47,7 +46,7 @@ namespace practica_Back_end
             if(findCliente(id) != null)
             {
                 listaCliente.RemoveAt(id);
-                seBorro = true;
+                seBorro = true;    
             }
             return seBorro;
         }
