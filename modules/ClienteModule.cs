@@ -30,7 +30,7 @@ namespace practica_Back_end
                 });
 
                 /*se muestra un cliente obtenido por su ID */
-                Get("/buscar/{id}", variables =>
+                Get("/{id}", variables =>
                 {                       
                     Cliente cliente = servicioLC.findCliente(variables.id);
                     if (cliente == null )
@@ -42,7 +42,7 @@ namespace practica_Back_end
                 });
                 
                 /*mapeo los datos enviados y creo un nuevo cliente */
-                Post("/nuevo", _ =>
+                Post("/", _ =>
                 {
                     var nuevoClt = this.Bind<Cliente>();
                     servicioLC.addCliente(nuevoClt);                    
@@ -50,7 +50,7 @@ namespace practica_Back_end
                 });
 
                 /* Actualizo un cliente existente */
-                Put("/actualizar/{id}", variables =>
+                Put("/{id}", variables =>
                 {
                     var nuevoClt = this.Bind<Cliente>();
                     if (servicioLC.findCliente(variables.id) != null)
@@ -62,7 +62,7 @@ namespace practica_Back_end
                 });
 
                 /* Elimino un cliente de la lista */
-                Delete("/eliminar/{id}", variables =>
+                Delete("/{id}", variables =>
                 {   
                     if (servicioLC.delClienteById(variables.id))
                     {

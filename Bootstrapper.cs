@@ -1,20 +1,13 @@
-using System;
 using Nancy;
-using Nancy.Conventions;
-
+using Nancy.TinyIoc;
 namespace practica_Back_end
 {
     public class Bootstrapper : DefaultNancyBootstrapper
     {
-        protected override void ConfigureConventions(NancyConventions nancyConventions)
+        protected override void ConfigureApplicationContainer(TinyIoCContainer contenedor)
         {
-            base.ConfigureConventions(nancyConventions);
-            
-            this.Conventions.AcceptHeaderCoercionConventions.Add((acceptHeaders, ctx) =>
-            {
-                // Only json for Conn-neg
-                return new [] { Tuple.Create("application/json", (decimal)1)};
-            });
+            base.ConfigureApplicationContainer(contenedor);
+            contenedor.Register<ListaClientesService>().AsSingleton();   
         }
     }
 }
